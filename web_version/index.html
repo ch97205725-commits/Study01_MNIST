@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>손글씨 숫자 인식기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 과제 제출용 신원 표시: 반드시 화면 맨 위에 보여야 한다 -->
+  <header id="학생정보">학번 2601990 이름 최현지</header>
+
+  <main>
+    <h1>손글씨 숫자 인식기</h1>
+    <p class="안내">검은 칸에 0~9 숫자 하나를 그리면 바로 인식합니다. 모든 계산은 브라우저 안에서 순수 자바스크립트로 이루어집니다.</p>
+
+    <div class="작업영역">
+      <section class="그림판영역">
+        <canvas id="그림판" width="280" height="280" aria-label="숫자를 그리는 칸"></canvas>
+        <button id="지우기" type="button">지우기 (우클릭)</button>
+      </section>
+
+      <section class="결과영역" aria-live="polite">
+        <div id="예측숫자">?</div>
+        <p id="상태">숫자를 그려 보세요</p>
+        <ol id="확률목록"></ol>
+        <figure>
+          <canvas id="미리보기" width="28" height="28" aria-label="모델에 들어가는 28x28 이미지"></canvas>
+          <figcaption>모델이 보는 28×28 이미지</figcaption>
+        </figure>
+      </section>
+    </div>
+  </main>
+
+  <script src="weights.js"></script>
+  <script src="inference.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

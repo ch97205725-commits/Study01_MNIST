@@ -1,0 +1,39 @@
+# main 브랜치의 web_version 폴더를 GitHub Pages에 정적 사이트로 배포한다.
+name: 웹 버전 GitHub Pages 배포
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web_version/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포가 겹치면 마지막 것만 남긴다
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  배포:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 저장소 가져오기
+        uses: actions/checkout@v4
+      - name: Pages 설정
+        uses: actions/configure-pages@v5
+      - name: web_version 폴더 올리기
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web_version
+      - name: Pages에 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,12 +1,20 @@
 # -*- coding: utf-8 -*-
 """MNIST 숫자 인식용 합성곱 신경망(CNN) 모델 정의."""
 
+from pathlib import Path
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# 학습된 가중치를 저장할 파일 이름
-가중치_파일 = "mnist_cnn.pt"
+# 이 파일이 있는 폴더 (어느 위치에서 실행해도 같은 파일을 쓰도록 기준으로 삼는다)
+현재_폴더 = Path(__file__).resolve().parent
+
+# 학습된 가중치를 저장할 파일 경로
+가중치_파일 = 현재_폴더 / "mnist_cnn.pt"
+
+# MNIST 데이터를 내려받을 폴더
+데이터_폴더 = 현재_폴더 / "data"
 
 # MNIST 데이터셋의 평균과 표준편차 (정규화에 사용)
 평균 = 0.1307

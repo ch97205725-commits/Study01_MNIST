@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-from model import 가중치_파일, 숫자인식망, 평균, 표준편차
+from model import 가중치_파일, 데이터_폴더, 숫자인식망, 평균, 표준편차
 
 # 학습 설정값
 에포크_수 = 5
@@ -29,8 +29,8 @@ def 데이터_불러오기():
         transforms.ToTensor(),
         transforms.Normalize((평균,), (표준편차,)),
     ])
-    학습_데이터 = datasets.MNIST("data", train=True, download=True, transform=학습_변환)
-    시험_데이터 = datasets.MNIST("data", train=False, download=True, transform=시험_변환)
+    학습_데이터 = datasets.MNIST(데이터_폴더, train=True, download=True, transform=학습_변환)
+    시험_데이터 = datasets.MNIST(데이터_폴더, train=False, download=True, transform=시험_변환)
     학습_로더 = DataLoader(학습_데이터, batch_size=배치_크기, shuffle=True)
     시험_로더 = DataLoader(시험_데이터, batch_size=1000, shuffle=False)
     return 학습_로더, 시험_로더
@@ -82,7 +82,7 @@ def 메인():
         if 정확도 > 최고_정확도:
             최고_정확도 = 정확도
             torch.save(모델.state_dict(), 가중치_파일)
-            print(f"  → {가중치_파일} 저장 완료")
+            print(f"  → {가중치_파일.name} 저장 완료")
 
     print(f"학습 종료. 최고 정확도: {최고_정확도:.2f}%")
 

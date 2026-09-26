@@ -4,3 +4,6 @@ __pycache__/
 
 # 학습 시 자동으로 내려받는 MNIST 데이터
 data/
+
+# 로컬 미리보기 서버 설정
+.claude/

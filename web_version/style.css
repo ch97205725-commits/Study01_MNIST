@@ -1,0 +1,123 @@
+/* 밝은/어두운 테마 공통 색상 */
+:root {
+  --배경: #f6f7f9;
+  --면: #ffffff;
+  --글자: #1d2330;
+  --흐린글자: #5b6475;
+  --강조: #2f6fed;
+  --테두리: #d9dde5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --배경: #14171d;
+    --면: #1e232b;
+    --글자: #e8ebf1;
+    --흐린글자: #9aa3b2;
+    --강조: #6b9bff;
+    --테두리: #323946;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--배경);
+  color: var(--글자);
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  word-break: keep-all; /* 한국어 낱말 중간에서 줄이 바뀌지 않도록 */
+}
+
+/* 화면 맨 위 학번·이름 표시줄 */
+#학생정보 {
+  background: var(--강조);
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px 16px;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1 { font-size: 1.5rem; margin: 8px 0; }
+.안내 { color: var(--흐린글자); margin: 0 0 16px; line-height: 1.5; }
+
+.작업영역 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.그림판영역 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 280px;
+  max-width: 100%;
+}
+
+#그림판 {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #000000;
+  border: 1px solid var(--테두리);
+  border-radius: 8px;
+  cursor: crosshair;
+  touch-action: none; /* 터치로 그릴 때 화면이 스크롤되지 않도록 */
+}
+
+button {
+  font: inherit;
+  padding: 8px 12px;
+  border: 1px solid var(--테두리);
+  border-radius: 8px;
+  background: var(--면);
+  color: var(--글자);
+  cursor: pointer;
+}
+button:hover { border-color: var(--강조); }
+
+.결과영역 {
+  flex: 1;
+  min-width: 200px;
+  background: var(--면);
+  border: 1px solid var(--테두리);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+#예측숫자 {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--강조);
+}
+#상태 { text-align: center; color: var(--흐린글자); margin: 8px 0 12px; }
+
+#확률목록 { list-style: none; padding: 0; margin: 0 0 12px; }
+#확률목록 li {
+  display: grid;
+  grid-template-columns: 1.5em 1fr 4em;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-variant-numeric: tabular-nums;
+}
+.막대 { height: 8px; border-radius: 4px; background: var(--테두리); overflow: hidden; }
+.막대 > span { display: block; height: 100%; background: var(--강조); }
+
+figure { margin: 0; display: flex; align-items: center; gap: 10px; color: var(--흐린글자); font-size: 0.85rem; }
+#미리보기 {
+  width: 56px;
+  height: 56px;
+  image-rendering: pixelated;
+  background: #000000;
+  border: 1px solid var(--테두리);
+}
