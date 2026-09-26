@@ -20,7 +20,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  배포:
+  # 작업 ID는 영문·숫자·-·_만 허용되므로 영어로 두고, 화면에 보이는 이름만 한글로 쓴다
+  deploy:
+    name: 배포
     runs-on: ubuntu-latest
     environment:
       name: github-pages
